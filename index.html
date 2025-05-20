@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    package calculator;  // Use your actual package name
+
+import javax.jws.WebService;
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.xml.ws.RequestWrapper;
+import javax.xml.ws.ResponseWrapper;
+
+@WebService(serviceName = "calci")
+public class calci {
+
+    @WebMethod(operationName = "add")
+    public double add(@WebParam(name = "a") double a, @WebParam(name = "b") double b) {
+        return a + b;
+    }
+
+    @WebMethod(operationName = "subtract")
+    public double subtract(@WebParam(name = "a") double a, @WebParam(name = "b") double b) {
+        return a - b;
+    }
+
+    @WebMethod(operationName = "multiply")
+    public double multiply(@WebParam(name = "a") double a, @WebParam(name = "b") double b) {
+        return a * b;
+    }
+
+    @WebMethod(operationName = "divide")
+    public double divide(@WebParam(name = "a") double a, @WebParam(name = "b") double b) {
+        if (b == 0) {
+            throw new IllegalArgumentException("Cannot divide by zero.");
+        }
+        return a / b;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "divide_1")
+    @RequestWrapper(className = "calculator.divide_1")
+    @ResponseWrapper(className = "calculator.divide_1Response")
+    public double divide(@WebParam(name = "a") final double a, @WebParam(name = "b") final double b, @WebParam(name = "c") final String c) {
+        //TODO write your implementation code here:
+        return 0.0;
+    }
+}
+
+</body>
+</html>
